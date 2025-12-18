@@ -1,79 +1,93 @@
-import { View, StyleSheet, Image, ImageSourcePropType, Text} from 'react-native';
+import { View, StyleSheet, Image, ImageSourcePropType, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import {BlurView} from "expo-blur";
+import { BlurView } from "expo-blur";
 import React from "react";
 
 type PolygonCardProps = {
     imageCard: ImageSourcePropType,
     cardHeight?: number,
     cardWidth?: number,
-    paddingTop?: number,
 }
 
-const CARD_WIDTH = 80;
-const CARD_HEIGHT = 60;
-const SKEW_DEG = '-14deg';
+const CARD_WIDTH = 170;
+const CARD_HEIGHT = 180;
+const SKEW_DEG = '-12deg';
 
-const PolygonCard = ({imageCard, cardWidth, cardHeight, paddingTop}: PolygonCardProps) => {
+const PolygonCard = ({ imageCard, cardWidth, cardHeight }: PolygonCardProps) => {
+    const width = cardWidth || CARD_WIDTH;
+    const height = cardHeight || CARD_HEIGHT;
+
     return (
-        <View style={[styles.wrapper, {marginTop: paddingTop}]}>
-            <LinearGradient
-                colors={['#353F54', '#222834']}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
+        <View style={[styles.wrapper]}>
+            <View
                 style={[
-                    styles.baseCardStyle, // Các style tĩnh
+                    styles.cardContainer,
                     {
-                        width: cardWidth,
-                        height: cardHeight,
+                        width: width,
+                        height: height,
                         transform: [{ skewX: SKEW_DEG }]
                     }
                 ]}
             >
-                <BlurView intensity={20} tint="dark" style={StyleSheet.absoluteFill} />
+                <LinearGradient
+                    colors={['#353F54', '#222834']}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={[
+                        StyleSheet.absoluteFill,
+                        { opacity: 0.7 }
+                    ]}
+                />
+
+                <BlurView
+                    intensity={20}
+                    tint="dark"
+                    style={StyleSheet.absoluteFill}
+                />
+
                 <View style={styles.content}>
-                    <Image source={imageCard} style={styles.imgStyle}/>
+                    <Image source={imageCard} style={styles.imgStyle} />
                     <View style={styles.textStyle}>
-                        <Text className="text-white">Road Bike</Text>
+                        <Text className="text-gray-400 text-sm">Road Bike</Text>
+                        <Text className="text-white">SMITH - Trade</Text>
+                        <Text className="text-gray-400 text-sm">$ 1,999.99</Text>
                     </View>
                 </View>
-            </LinearGradient>
+            </View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     wrapper: {
-        padding: 10,
+        // padding: 10,
         alignItems: 'center',
         justifyContent: 'center',
         transform: [{ rotate: '-15deg' }],
         elevation: 8,
     },
 
-    baseCardStyle: {
-        width: CARD_WIDTH,
-        height: CARD_HEIGHT,
+    cardContainer: {
         borderRadius: 15,
-        transform: [{ skewX: SKEW_DEG }],
         justifyContent: 'center',
         alignItems: 'center',
-        // opacity: 0.8,
+        overflow: 'hidden',
     },
 
     content: {
         transform: [{ rotate: '15deg' }],
+        zIndex: 10,
     },
 
     imgStyle: {
-        height: 60,
-        width: 90,
+        height: 90,
+        width: 120,
         transform: [{ skewX: '14deg' }],
     },
 
     textStyle: {
         transform: [{ skewX: '14deg' }],
-        padding: 20
+        padding: 10
     }
 });
 

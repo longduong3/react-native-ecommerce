@@ -1,10 +1,15 @@
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
-import { Image, ScrollView, StyleSheet, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, View, Text} from 'react-native';
 
-const data = ['All', 'Battery', 'Road', 'Hill', 'Helmet'];
-
+const iconData = [
+    {id: 1, name: 'All', img: ''},
+    {id: 2, name: 'Battery', img: require('../assets/images/battery.png')},
+    {id: 3, name: 'Road', img: require('../assets/images/road.png')},
+    {id: 3, name: 'Mountain', img: require('../assets/images/mountain.png')},
+    {id: 4, name: 'Hemet', img: require('../assets/images/hemet.png')},
+]
 export default function CardIcon() {
   return (
     <View style={styles.container}>
@@ -14,7 +19,7 @@ export default function CardIcon() {
         contentContainerStyle={styles.scrollContent}
         showsHorizontalScrollIndicator={false}
       >
-        {data.map((item, index) => (
+        {iconData.map((item, index) => (
             <View
             key={index}
             style={[
@@ -23,9 +28,11 @@ export default function CardIcon() {
             >
                 <LinearGradient colors={['#353F54', '#222834']} style={styles.cardIcon}>
                     <BlurView intensity={20} tint="dark" style={StyleSheet.absoluteFill} />
-                    {/* <Text style={{color: 'white'}}>{item}</Text> */}
-                    
-                    <Image source={require('../assets/images/battery.png')} style={{width: 30, height: 30}} />
+                    {item.img ?
+                        <Image source={item.img} style={{width: 25, height: 25}} />
+                        :
+                        <Text className="text-white text-xl font-bold">{item.name}</Text>
+                    }
                 </LinearGradient>
                 </View>
             ))}

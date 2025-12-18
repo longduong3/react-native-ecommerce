@@ -55,7 +55,7 @@ export default function CardCross({titleCard, imageSource} : CardCrossProps) {
         }
       >
         <BlurView 
-            intensity={30} 
+            intensity={70}
             tint="dark" 
             style={StyleSheet.absoluteFill} 
         />

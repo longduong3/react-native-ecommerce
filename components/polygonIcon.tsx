@@ -13,21 +13,23 @@ const PolygonIcon = ({focused, icon}: any) => {
                     style={styles.card}
                 >
                     <View style={styles.content}>
-                        <Image source={icon} style={styles.iconStyle}/>
+                        <Image source={icon} style={styles.focusedIcon}/>
                     </View>
                 </LinearGradient>
             </View>
         );
     } else {
         return (
-            <View style={styles.wrapper}></View>
+            <View style={styles.wrapper}>
+                <Image source={icon} style={styles.unFocusedIcon}/>
+            </View>
         )
     }
 };
 
 const CARD_WIDTH = 80;
 const CARD_HEIGHT = 60;
-const SKEW_DEG = '-18deg';
+const SKEW_DEG = '-14deg';
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -57,10 +59,16 @@ const styles = StyleSheet.create({
         transform: [{ rotate: '15deg' }],
     },
 
-    iconStyle: {
+    focusedIcon: {
         height: 20,
-        width: 32,
+        width: 30,
         transform: [{ skewX: '14deg' }],
+    },
+
+    unFocusedIcon: {
+        transform: [{ rotate: '15deg' }],
+        height: 18,
+        width: 20,
     }
 });
 

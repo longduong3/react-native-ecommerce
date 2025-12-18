@@ -1,6 +1,6 @@
-import {Stack} from "expo-router";
-import {Provider} from "react-redux";
-import {store} from "../store/store";
+import { Stack } from "expo-router";
+import { Provider } from "react-redux";
+import { store } from "../store/store";
 import './globals.css';
 
 export default function RootLayout() {
@@ -8,7 +8,7 @@ export default function RootLayout() {
         <Provider store={store}>
             <Stack>
                 <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
-                <Stack.Screen name="bike/[id]" options={{headerShown: false}}/>
+                <Stack.Screen name="bikes/[id]" options={{headerShown: false}}/>
             </Stack>
         </Provider>
     );
