@@ -1,19 +1,19 @@
-import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import {Ionicons} from '@expo/vector-icons';
+import {LinearGradient} from 'expo-linear-gradient';
+import {useLocalSearchParams, useRouter} from 'expo-router';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {
-  Animated,
-  Dimensions,
-  ImageBackground,
-  Modal,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
+    Animated,
+    Dimensions,
+    ImageBackground,
+    Modal,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 type TabKey = 'description' | 'specification';
 
@@ -67,7 +67,7 @@ const BikeDetail = () => {
     const {id} = useLocalSearchParams<{ id?: string }>();
     const [activeTab, setActiveTab] = useState<TabKey>('description');
     const [modalVisible, setModalVisible] = useState(false);
-    
+
     const translateY = useRef(new Animated.Value(0)).current;
     const scale = useRef(new Animated.Value(1)).current;
 
@@ -129,8 +129,8 @@ const BikeDetail = () => {
     }
 
     return (
-        <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
-            <ImageBackground source={require('../../assets/images/bg.png')} style={{width: '100%', height: '100%'}}>
+        <SafeAreaView className="flex-1 bg-transparent" edges={['top', 'left', 'right']}>
+            <ImageBackground source={require('../../assets/images/bg.png')} className="h-full">
                 <View
                     style={styles.styleView}
                 >
@@ -144,21 +144,30 @@ const BikeDetail = () => {
                             <Ionicons name="chevron-back" size={22} color="#c9d8ff"/>
                         </TouchableOpacity>
                         <Text style={styles.title}>{bike.title}</Text>
-                        <View className="bg-transparent"/>
+                        <View>
+                            <TouchableOpacity
+                                activeOpacity={0.8}
+                                onPress={() => router.back()}
+                                style={styles.roundButton}
+                                accessibilityLabel="Quay lại"
+                            >
+                                <Ionicons name="cart" size={22} color="#c9d8ff"/>
+                            </TouchableOpacity>
+                        </View>
                     </View>
 
                     <View style={styles.heroContainer}>
-                        <Animated.Image 
-                            source={bike.image} 
+                        <Animated.Image
+                            source={bike.image}
                             style={[
                                 styles.bikeImage,
                                 {
                                     transform: [
-                                        { translateY: translateY },
-                                        { scale: scale }
+                                        {translateY: translateY},
+                                        {scale: scale}
                                     ]
                                 }
-                            ]} 
+                            ]}
                             resizeMode="contain"
                         />
                     </View>
@@ -172,8 +181,8 @@ const BikeDetail = () => {
 
                 <LinearGradient
                     colors={['#353F54', '#222834']}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 1 }}
+                    start={{x: 0, y: 0}}
+                    end={{x: 1, y: 1}}
                     style={styles.bottomBar}>
                     <TouchableOpacity
                         style={styles.bottomButton}
@@ -182,8 +191,8 @@ const BikeDetail = () => {
                     >
                         <LinearGradient
                             colors={['rgba(0,0,0,0.3)', 'transparent', 'transparent']}
-                            start={{ x: 0, y: 0 }}
-                            end={{ x: 0, y: 1 }}
+                            start={{x: 0, y: 0}}
+                            end={{x: 0, y: 1}}
                             style={styles.insetShadow}
                         />
                         <Text style={styles.bottomButtonText}>
@@ -197,8 +206,8 @@ const BikeDetail = () => {
                     >
                         <LinearGradient
                             colors={['rgba(0,0,0,0.3)', 'transparent', 'transparent']}
-                            start={{ x: 0, y: 0 }}
-                            end={{ x: 0, y: 1 }}
+                            start={{x: 0, y: 0}}
+                            end={{x: 0, y: 1}}
                             style={styles.insetShadow}
                         />
                         <Text style={styles.bottomButtonText}>Specification</Text>
@@ -337,7 +346,7 @@ const styles = StyleSheet.create({
         paddingVertical: 30,
         gap: 12,
         shadowColor: "#000",
-        shadowOffset: { width: 0, height: 1 },
+        shadowOffset: {width: 0, height: 1},
         shadowOpacity: 0.9,
         shadowRadius: 10,
     },
@@ -376,7 +385,7 @@ const styles = StyleSheet.create({
         // padding: 20,
         maxHeight: '78%',
         shadowColor: "#000",
-        shadowOffset: { width: 0, height: 1 },
+        shadowOffset: {width: 0, height: 1},
         shadowOpacity: 0.7,
         shadowRadius: 10,
     },
@@ -431,7 +440,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 40,
         borderTopLeftRadius: 40,
         shadowColor: "#000",
-        shadowOffset: { width: 0, height: 5 },
+        shadowOffset: {width: 0, height: 5},
         shadowOpacity: 0.5,
         shadowRadius: 10,
     },

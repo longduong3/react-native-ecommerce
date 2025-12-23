@@ -11,6 +11,7 @@ export const ordersMiddleware: Middleware = (store) => (next) => (action) => {
   const result = next(action);
   
   // Khi đơn hàng được tạo thành công
+  // @ts-ignore
   if (action.type === 'orders/createOrder') {
     const state = store.getState();
     const orders = state.orders.orders;
@@ -32,10 +33,12 @@ export const ordersMiddleware: Middleware = (store) => (next) => (action) => {
   }
   
   // Khi đơn hàng bị hủy, có thể cập nhật lại tồn kho
+  // @ts-ignore
   if (action.type === 'orders/cancelOrder') {
+    // @ts-ignore
     const orderId = action.payload;
     const ordersState = store.getState().orders;
-    const cancelledOrder = ordersState.orders.find(o => o.id === orderId);
+    const cancelledOrder = ordersState.orders.find((o: { id: any; }) => o.id === orderId);
     
     // Nếu đơn hàng đã được xử lý (confirmed, processing, shipped), cần cập nhật lại tồn kho
     if (cancelledOrder && 

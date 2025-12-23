@@ -17,7 +17,7 @@ export default function Index() {
     ];
 
     return (
-        <SafeAreaView className="flex-1 bg-transparent" edges={['top']} >
+        <SafeAreaView className="flex-1 bg-transparent" edges={['top']}>
             <View className="h-full flex-1 bg-transparent">
                 <View className="pl-8 pr-8 flex-row justify-between items-center bg-transparent">
                     <Text className="text-2xl font-bold text-white">Choose your bike</Text>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     cardItem: {
-        width: '48%',
+        width: '50%',
         marginBottom: 20,
         alignItems: 'center'
     },

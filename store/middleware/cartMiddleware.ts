@@ -11,12 +11,14 @@ export const cartMiddleware: Middleware = (store) => (next) => (action) => {
   const result = next(action);
   
   // Khi sản phẩm được cập nhật, cập nhật lại trong giỏ hàng
+  // @ts-ignore
   if (action.type === 'products/updateProduct') {
+    // @ts-ignore
     const updatedProduct = action.payload;
     const cartState = store.getState().cart;
     
     // Kiểm tra xem sản phẩm có trong giỏ hàng không
-    const cartItem = cartState.items.find(item => item.productId === updatedProduct.id);
+    const cartItem = cartState.items.find((item: { productId: any; }) => item.productId === updatedProduct.id);
     if (cartItem) {
       store.dispatch(updateCartItemProduct(updatedProduct));
     }

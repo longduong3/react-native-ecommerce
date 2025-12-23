@@ -11,7 +11,7 @@ type PolygonCardProps = {
 
 const CARD_WIDTH = 170;
 const CARD_HEIGHT = 180;
-const SKEW_DEG = '-12deg';
+const SKEW_DEG = '-16deg';
 
 const PolygonCard = ({ imageCard, cardWidth, cardHeight }: PolygonCardProps) => {
     const width = cardWidth || CARD_WIDTH;

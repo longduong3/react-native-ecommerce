@@ -23,7 +23,6 @@ const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    // Đặt danh sách sản phẩm
     setProducts: (state, action: PayloadAction<Product[]>) => {
       state.products = action.payload;
       state.filteredProducts = action.payload;
@@ -31,13 +30,11 @@ const productsSlice = createSlice({
       state.error = null;
     },
     
-    // Thêm sản phẩm mới
     addProduct: (state, action: PayloadAction<Product>) => {
       state.products.push(action.payload);
       state.filteredProducts.push(action.payload);
     },
     
-    // Cập nhật sản phẩm
     updateProduct: (state, action: PayloadAction<Product>) => {
       const index = state.products.findIndex(p => p.id === action.payload.id);
       if (index !== -1) {
@@ -49,36 +46,30 @@ const productsSlice = createSlice({
       }
     },
     
-    // Xóa sản phẩm
     deleteProduct: (state, action: PayloadAction<string>) => {
       state.products = state.products.filter(p => p.id !== action.payload);
       state.filteredProducts = state.filteredProducts.filter(p => p.id !== action.payload);
     },
     
-    // Chọn sản phẩm để xem chi tiết
     selectProduct: (state, action: PayloadAction<string>) => {
       const product = state.products.find(p => p.id === action.payload);
       state.selectedProduct = product || null;
     },
     
-    // Xóa sản phẩm đã chọn
     clearSelectedProduct: (state) => {
       state.selectedProduct = null;
     },
     
-    // Lọc sản phẩm
     setFilters: (state, action: PayloadAction<ProductFilter>) => {
       state.filters = { ...state.filters, ...action.payload };
       applyFilters(state);
     },
     
-    // Xóa bộ lọc
     clearFilters: (state) => {
       state.filters = {};
       state.filteredProducts = state.products;
     },
     
-    // Tìm kiếm sản phẩm
     searchProducts: (state, action: PayloadAction<string>) => {
       const searchTerm = action.payload.toLowerCase();
       if (!searchTerm) {
@@ -93,7 +84,6 @@ const productsSlice = createSlice({
       );
     },
     
-    // Cập nhật tồn kho sau khi đặt hàng
     updateProductStock: (state, action: PayloadAction<{ productId: string; quantity: number }>) => {
       const { productId, quantity } = action.payload;
       const product = state.products.find(p => p.id === productId);
@@ -106,12 +96,10 @@ const productsSlice = createSlice({
       }
     },
     
-    // Đặt trạng thái loading
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
     
-    // Đặt lỗi
     setError: (state, action: PayloadAction<string | null>) => {
       state.error = action.payload;
       state.loading = false;
@@ -119,7 +107,6 @@ const productsSlice = createSlice({
   },
 });
 
-// Hàm helper để áp dụng bộ lọc
 function applyFilters(state: ProductsState) {
   let filtered = [...state.products];
   

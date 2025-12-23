@@ -23,7 +23,7 @@ const _layout = () => {
                         title: 'Home',
                         headerShown: false,
                         tabBarIcon: ({focused}) => (
-                            <PolygonIcon focused={focused} icon={icons.bicycle}/>
+                            <PolygonIcon focused={focused} icon={'bicycle'}/>
                         )
                     }}
                 />
@@ -33,7 +33,7 @@ const _layout = () => {
                         title: 'Cart',
                         headerShown: false,
                         tabBarIcon: ({focused}) => (
-                            <PolygonIcon focused={focused} icon={icons.cart}/>
+                            <PolygonIcon focused={focused} icon={'cart'}/>
                         )
                     }}
                 />
@@ -43,7 +43,7 @@ const _layout = () => {
                         title: 'Profiles',
                         headerShown: false,
                         tabBarIcon: ({focused}) => (
-                            <PolygonIcon focused={focused} icon={icons.person}/>
+                            <PolygonIcon focused={focused} icon={'person'}/>
                         )
                     }}
                 />

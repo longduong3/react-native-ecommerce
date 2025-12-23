@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Image} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import {Ionicons} from "@expo/vector-icons";
 
 const PolygonIcon = ({focused, icon}: any) => {
     if (focused) {
@@ -13,7 +14,7 @@ const PolygonIcon = ({focused, icon}: any) => {
                     style={styles.card}
                 >
                     <View style={styles.content}>
-                        <Image source={icon} style={styles.focusedIcon}/>
+                        <Ionicons name={icon} size={30} color="#ffff" style={styles.focusedIcon}/>
                     </View>
                 </LinearGradient>
             </View>
@@ -21,7 +22,7 @@ const PolygonIcon = ({focused, icon}: any) => {
     } else {
         return (
             <View style={styles.wrapper}>
-                <Image source={icon} style={styles.unFocusedIcon}/>
+                <Ionicons name={icon} size={20} color="#ffff" style={styles.unFocusedIcon}/>
             </View>
         )
     }
@@ -60,8 +61,8 @@ const styles = StyleSheet.create({
     },
 
     focusedIcon: {
-        height: 20,
-        width: 30,
+        // height: 20,
+        // width: 30,
         transform: [{ skewX: '14deg' }],
     },
 
